@@ -9,6 +9,9 @@ let TAGNAMES = {
 }
 
 let eventSupport = (eventName) => {
+    //to support compilation in server-side
+    if (!document)
+        return false
     let el = document.createElement(TAGNAMES[eventName] || 'div')
     eventName = 'on' + eventName
     let isSupported = (eventName in el)
