@@ -10,7 +10,7 @@ let TAGNAMES = {
 
 let eventSupport = (eventName) => {
     //to support compilation in server-side
-    if (!document)
+    if (typeof window === "undefined" || typeof document === "undefined")
         return false
     let el = document.createElement(TAGNAMES[eventName] || 'div')
     eventName = 'on' + eventName
