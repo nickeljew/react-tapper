@@ -196,6 +196,9 @@ let Tappable = React.createClass({
         delete newComponentProps.preventDefault;
         delete newComponentProps.stopPropagation;
         delete newComponentProps.component;
+        delete newComponentProps.flickThreshold;
+        delete newComponentProps.delta;
+        delete newComponentProps.handlers;
 
         return React.createElement(props.component, newComponentProps, props.children)
     }
