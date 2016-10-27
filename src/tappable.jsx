@@ -155,9 +155,19 @@ let Tappable = React.createClass({
 
         this.setState(this.getInitialState())
     }
+    , touchCancel (ev) {
+        this.setState(this.getInitialState())
+    }
 
     , _handleClick(ev) {
-        !this.touchable && this._handleTap(ev)
+        //!this.touchable && this._handleTap(ev)
+        if (this.state.start === 0) {
+            this._handleTap(ev)
+        } else {
+            setTimeout(() => {
+                this.state.start === 0 && this._handleTap(ev)
+            }, 300)
+        }
     }
     , _handleTap(ev) {
         this.props.onTap && this.props.onTap(ev)
@@ -168,6 +178,7 @@ let Tappable = React.createClass({
             onTouchStart: this.touchStart,
             onTouchMove: this.touchMove,
             onTouchEnd: this.touchEnd,
+            onTouchCancel: this.touchCancel,
             onClick: this._handleClick,
         };
     }
@@ -182,7 +193,7 @@ let Tappable = React.createClass({
             style: style,
             className: props.className,
             disabled: props.disabled,
-            handlers: this.handlers
+            //handlers: this.handlers
         }, this.handlers())
 
         delete newComponentProps.onTap
@@ -198,7 +209,7 @@ let Tappable = React.createClass({
         delete newComponentProps.component;
         delete newComponentProps.flickThreshold;
         delete newComponentProps.delta;
-        delete newComponentProps.handlers;
+        //delete newComponentProps.handlers;
 
         return React.createElement(props.component, newComponentProps, props.children)
     }
