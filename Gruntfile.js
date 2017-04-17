@@ -1,5 +1,6 @@
 "use strict";
 
+var webpack_cfg = require('./webpack.config')
 
 module.exports = function(grunt) {
     grunt.initConfig({
@@ -26,11 +27,16 @@ module.exports = function(grunt) {
                 ]
             }
         }
+        , webpack: {
+            demo: webpack_cfg
+        }
     })
 
     grunt.loadNpmTasks('grunt-babel')
+    grunt.loadNpmTasks('grunt-webpack')
 
 
     grunt.registerTask('default', ['babel'])
+    grunt.registerTask('dev', ['webpack:demo', 'babel'])
 
 }

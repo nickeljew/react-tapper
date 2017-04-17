@@ -4,3 +4,5 @@
 .idea/vcs.xml
 
 node_modules
+
+*.log

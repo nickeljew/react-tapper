@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import touchSupported from './touch-support'
 import touchStyles from './touch-styles'
 
@@ -8,20 +9,20 @@ let _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 let Tappable = React.createClass({
     propTypes: {
-        component: React.PropTypes.any,
-        onTap: React.PropTypes.func,
+        component: PropTypes.any,
+        onTap: PropTypes.func,
 
-        onSwiped: React.PropTypes.func,
-        onSwipingUp: React.PropTypes.func,
-        onSwipingRight: React.PropTypes.func,
-        onSwipingDown: React.PropTypes.func,
-        onSwipingLeft: React.PropTypes.func,
-        onSwipedUp: React.PropTypes.func,
-        onSwipedRight: React.PropTypes.func,
-        onSwipedDown: React.PropTypes.func,
-        onSwipedLeft: React.PropTypes.func,
-        flickThreshold: React.PropTypes.number,
-        delta: React.PropTypes.number,
+        onSwiped: PropTypes.func,
+        onSwipingUp: PropTypes.func,
+        onSwipingRight: PropTypes.func,
+        onSwipingDown: PropTypes.func,
+        onSwipingLeft: PropTypes.func,
+        onSwipedUp: PropTypes.func,
+        onSwipedRight: PropTypes.func,
+        onSwipedDown: PropTypes.func,
+        onSwipedLeft: PropTypes.func,
+        flickThreshold: PropTypes.number,
+        delta: PropTypes.number
     }
     , touchable: touchSupported()
     , getDefaultProps () {
