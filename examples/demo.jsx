@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import DocReady from 'es6-docready'
 import Dom from 'es6-dom'
@@ -8,17 +8,21 @@ import Tappable from 'tappable'
 
 
 DocReady(function() {
-    const Main = React.createClass({
-        propTypes: {}
-        , getInitialState() {
-            return {
+    class Main extends Component {
+        constructor(props, context) {
+            super(props, context)
+
+            this.state = {
                 showed: false
                 , closeable: false
             }
+
+            this._handleOverlayTouchTap = this._handleOverlayTouchTap.bind(this)
+            this._onShow = this._onShow.bind(this)
+            this._onDismiss = this._onDismiss.bind(this)
         }
 
-        , render() {
-
+        render() {
             return (
                 <div className="main">
                     <a className="hitbtn" onClick={this._onShow}>Click to show</a>
@@ -39,21 +43,21 @@ DocReady(function() {
             )
         }
 
-        ,  _handleOverlayTouchTap(e) {
+        _handleOverlayTouchTap(e) {
             if (this.state.closeable) {
                 this._onDismiss()
             }
         }
 
-        , _onShow() {
+        _onShow() {
             setTimeout(function() {this.state.closeable = true;}.bind(this), 250)
             this.setState({ showed: true })
         }
 
-        , _onDismiss() {
+        _onDismiss() {
             this.setState({ showed: false, closeable: false })
         }
-    })
+    }
 
 
 

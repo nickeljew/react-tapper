@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component, createElement } from 'react'
 import PropTypes from 'prop-types'
 import touchSupported from './touch-support'
 import touchStyles from './touch-styles'
@@ -7,41 +7,51 @@ import touchStyles from './touch-styles'
 let _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }
 
 
-let Tappable = React.createClass({
-    propTypes: {
-        component: PropTypes.any,
-        onTap: PropTypes.func,
+class Tappable extends Component {
+    constructor(props, context) {
+        super(props, context)
 
-        onSwiped: PropTypes.func,
-        onSwipingUp: PropTypes.func,
-        onSwipingRight: PropTypes.func,
-        onSwipingDown: PropTypes.func,
-        onSwipingLeft: PropTypes.func,
-        onSwipedUp: PropTypes.func,
-        onSwipedRight: PropTypes.func,
-        onSwipedDown: PropTypes.func,
-        onSwipedLeft: PropTypes.func,
-        flickThreshold: PropTypes.number,
-        delta: PropTypes.number
-    }
-    , touchable: touchSupported()
-    , getDefaultProps () {
-        return {
-            component: 'div',
-            flickThreshold: 0.6,
-            delta: 10,
-        }
-    }
-    , getInitialState () {
-        return {
+        this.state = {
             x: null,
             y: null,
             swiping: false,
             start: 0
         }
+
+        this.touchable = touchSupported()
     }
 
-    , calculatePos (e) {
+    render () {
+        let props = this.props
+            , style = {}
+        _extends(style, touchStyles, props.style)
+
+        let newComponentProps = _extends({}, props, {
+            style: style
+            , className: props.className
+            , disabled: props.disabled
+            //, handlers: this.handlers
+        }, this.handlers())
+
+        delete newComponentProps.onTap
+        delete newComponentProps.onPress
+        delete newComponentProps.onPinchStart
+        delete newComponentProps.onPinchMove
+        delete newComponentProps.onPinchEnd
+        delete newComponentProps.moveThreshold
+        delete newComponentProps.pressDelay
+        delete newComponentProps.pressMoveThreshold
+        delete newComponentProps.preventDefault
+        delete newComponentProps.stopPropagation
+        delete newComponentProps.component
+        delete newComponentProps.flickThreshold
+        delete newComponentProps.delta
+        //delete newComponentProps.handlers
+
+        return createElement(props.component, newComponentProps, props.children)
+    }
+
+    calculatePos (e) {
         let x = e.changedTouches[0].clientX
         let y = e.changedTouches[0].clientY
 
@@ -59,7 +69,7 @@ let Tappable = React.createClass({
         }
     }
 
-    , touchStart (e) {
+    touchStart (e) {
         if (e.touches.length > 1) {
             return
         }
@@ -77,7 +87,7 @@ let Tappable = React.createClass({
         })
     }
 
-    , touchMove (e) {
+    touchMove (e) {
         if (!this.state.x || !this.state.y || e.touches.length > 1) {
             return
         }
@@ -122,7 +132,7 @@ let Tappable = React.createClass({
         }
     }
 
-    , touchEnd (ev) {
+    touchEnd (ev) {
         if (this.state.swiping) {
             let pos = this.calculatePos(ev)
 
@@ -156,11 +166,12 @@ let Tappable = React.createClass({
 
         this.setState(this.getInitialState())
     }
-    , touchCancel (ev) {
+
+    touchCancel (ev) {
         this.setState(this.getInitialState())
     }
 
-    , _handleClick(ev) {
+    _handleClick(ev) {
         //!this.touchable && this._handleTap(ev)
         if (this.state.start === 0) {
             this._handleTap(ev)
@@ -170,50 +181,44 @@ let Tappable = React.createClass({
             }, 300)
         }
     }
-    , _handleTap(ev) {
+
+    _handleTap(ev) {
         this.props.onTap && this.props.onTap(ev)
     }
 
-    , handlers() {
+    handlers() {
         return {
-            onTouchStart: this.touchStart,
-            onTouchMove: this.touchMove,
-            onTouchEnd: this.touchEnd,
-            onTouchCancel: this.touchCancel,
-            onClick: this._handleClick,
-        };
+            onTouchStart: this.touchStart.bind(this),
+            onTouchMove: this.touchMove.bind(this),
+            onTouchEnd: this.touchEnd.bind(this),
+            onTouchCancel: this.touchCancel.bind(this),
+            onClick: this._handleClick.bind(this)
+        }
     }
+}
 
-    , render () {
 
-        let props = this.props
-            , style = {}
-        _extends(style, touchStyles, props.style)
+Tappable.propTypes = {
+    component: PropTypes.any,
+    onTap: PropTypes.func,
 
-        let newComponentProps = _extends({}, props, {
-            style: style,
-            className: props.className,
-            disabled: props.disabled,
-            //handlers: this.handlers
-        }, this.handlers())
+    onSwiped: PropTypes.func,
+    onSwipingUp: PropTypes.func,
+    onSwipingRight: PropTypes.func,
+    onSwipingDown: PropTypes.func,
+    onSwipingLeft: PropTypes.func,
+    onSwipedUp: PropTypes.func,
+    onSwipedRight: PropTypes.func,
+    onSwipedDown: PropTypes.func,
+    onSwipedLeft: PropTypes.func,
+    flickThreshold: PropTypes.number,
+    delta: PropTypes.number
+}
 
-        delete newComponentProps.onTap
-        delete newComponentProps.onPress
-        delete newComponentProps.onPinchStart
-        delete newComponentProps.onPinchMove
-        delete newComponentProps.onPinchEnd;
-        delete newComponentProps.moveThreshold;
-        delete newComponentProps.pressDelay;
-        delete newComponentProps.pressMoveThreshold;
-        delete newComponentProps.preventDefault;
-        delete newComponentProps.stopPropagation;
-        delete newComponentProps.component;
-        delete newComponentProps.flickThreshold;
-        delete newComponentProps.delta;
-        //delete newComponentProps.handlers;
-
-        return React.createElement(props.component, newComponentProps, props.children)
-    }
-})
+Tappable.defaultProps = {
+    component: 'div',
+    flickThreshold: 0.6,
+    delta: 10
+}
 
 export default Tappable
