@@ -16,7 +16,7 @@ module.exports = {
         //, libraryTarget: 'commonjs2'
     }
     , resolve: {
-        extensions: ['.jsx', '.es6']
+        extensions: ['.js', '.jsx', '.es6']
         , modules: [path.resolve(__dirname, "src"), "node_modules"]
     }
     , externals: {

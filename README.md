@@ -4,6 +4,9 @@ Tappable and Swipeable component for React.
 
 
 ## Changelogs
+#### v0.1.13
+- added extension for entry
+
 #### v0.1.12
 - Update for react v15.5.x & using ES2015 class
 
