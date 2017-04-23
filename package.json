@@ -10,7 +10,7 @@
     "react"
   ],
   "author": "Nickel Jianhui Zhu <nickeljew@hotmail.com>",
-  "version": "0.1.13",
+  "version": "0.1.14",
   "license": "MIT",
   "private": false,
   "main": "lib/tappable.js",
