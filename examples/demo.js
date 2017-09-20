@@ -33,9 +33,6 @@
 /******/ 	// expose the module cache
 /******/ 	__webpack_require__.c = installedModules;
 /******/
-/******/ 	// identity function for calling harmony imports with the correct context
-/******/ 	__webpack_require__.i = function(value) { return value; };
-/******/
 /******/ 	// define getter function for harmony exports
 /******/ 	__webpack_require__.d = function(exports, name, getter) {
 /******/ 		if(!__webpack_require__.o(exports, name)) {
@@ -63,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 5);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -79,6 +76,296 @@ module.exports = React;
 "use strict";
 
 
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(2);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+var _es6Docready = __webpack_require__(3);
+
+var _es6Docready2 = _interopRequireDefault(_es6Docready);
+
+var _es6Dom = __webpack_require__(4);
+
+var _es6Dom2 = _interopRequireDefault(_es6Dom);
+
+var _tappable = __webpack_require__(5);
+
+var _tappable2 = _interopRequireDefault(_tappable);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+(0, _es6Docready2.default)(function () {
+    var Main = function (_Component) {
+        _inherits(Main, _Component);
+
+        function Main(props, context) {
+            _classCallCheck(this, Main);
+
+            var _this = _possibleConstructorReturn(this, (Main.__proto__ || Object.getPrototypeOf(Main)).call(this, props, context));
+
+            _this.state = {
+                showed: false,
+                closeable: false
+            };
+
+            _this._handleOverlayTouchTap = _this._handleOverlayTouchTap.bind(_this);
+            _this._onShow = _this._onShow.bind(_this);
+            _this._onDismiss = _this._onDismiss.bind(_this);
+            return _this;
+        }
+
+        _createClass(Main, [{
+            key: 'render',
+            value: function render() {
+                return _react2.default.createElement(
+                    'div',
+                    { className: 'main' },
+                    _react2.default.createElement(
+                        'a',
+                        { className: 'hitbtn', onClick: this._onShow },
+                        'Click to show'
+                    ),
+                    _react2.default.createElement(
+                        'div',
+                        { className: ["container", "table", this.state.showed ? "show" : ''].join(' ') },
+                        _react2.default.createElement(_tappable2.default, { className: 'overlay', onTap: this._handleOverlayTouchTap }),
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'cell' },
+                            _react2.default.createElement(
+                                'div',
+                                { className: 'popup' },
+                                _react2.default.createElement(
+                                    'p',
+                                    null,
+                                    'Hello, it\'s me'
+                                ),
+                                _react2.default.createElement(
+                                    'p',
+                                    null,
+                                    'I was wondering if after all these years you\'d like to meet'
+                                ),
+                                _react2.default.createElement(
+                                    'p',
+                                    null,
+                                    'To go over everything'
+                                ),
+                                _react2.default.createElement(
+                                    'p',
+                                    null,
+                                    'They say that time\'s supposed to heal ya'
+                                ),
+                                _react2.default.createElement(
+                                    'p',
+                                    null,
+                                    'But I ain\'t done much healing'
+                                ),
+                                _react2.default.createElement(
+                                    'span',
+                                    null,
+                                    '< click gray area to dismiss >'
+                                )
+                            )
+                        )
+                    )
+                );
+            }
+        }, {
+            key: '_handleOverlayTouchTap',
+            value: function _handleOverlayTouchTap(e) {
+                if (this.state.closeable) {
+                    this._onDismiss();
+                }
+            }
+        }, {
+            key: '_onShow',
+            value: function _onShow() {
+                setTimeout(function () {
+                    this.state.closeable = true;
+                }.bind(this), 250);
+                this.setState({ showed: true });
+            }
+        }, {
+            key: '_onDismiss',
+            value: function _onDismiss() {
+                this.setState({ showed: false, closeable: false });
+            }
+        }]);
+
+        return Main;
+    }(_react.Component);
+
+    _reactDom2.default.render(_react2.default.createElement(Main, null), _es6Dom2.default.nodeById("page-container"));
+});
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports) {
+
+module.exports = ReactDOM;
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports["default"] = docReady;
+
+function docReady(callback) {
+
+    function completed() {
+        document.removeEventListener("DOMContentLoaded", completed, false);
+        window.removeEventListener("load", completed, false);
+        callback();
+    }
+
+    //Events.on(document, 'DOMContentLoaded', completed)
+
+    if (document.readyState === "complete") {
+        // Handle it asynchronously to allow scripts the opportunity to delay ready
+        setTimeout(callback);
+    } else {
+
+        // Use the handy event callback
+        document.addEventListener("DOMContentLoaded", completed, false);
+
+        // A fallback to window.onload, that will always work
+        window.addEventListener("load", completed, false);
+    }
+}
+
+module.exports = exports["default"];
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, '__esModule', {
+    value: true
+});
+
+var dom = {
+
+    isDescendant: function isDescendant(parent, child) {
+        var node = child.parentNode;
+
+        while (node !== null) {
+            if (node === parent) return true;
+            node = node.parentNode;
+        }
+
+        return false;
+    },
+
+    offset: function offset(el) {
+        var rect = el.getBoundingClientRect();
+        return {
+            top: rect.top + document.body.scrollTop,
+            left: rect.left + document.body.scrollLeft
+        };
+    },
+
+    getStyleAttributeAsNumber: function getStyleAttributeAsNumber(el, attr) {
+        var attrStyle = el.style[attr];
+        var attrNum = 0;
+        if (attrStyle && attrStyle.length) {
+            attrNum = parseInt(attrStyle);
+        }
+
+        return attrNum;
+    },
+
+    addClass: function addClass(el, className) {
+        if (el.classList) el.classList.add(className);else el.className += ' ' + className;
+    },
+
+    removeClass: function removeClass(el, className) {
+        if (el.classList) el.classList.remove(className);else el.className = el.className.replace(new RegExp('(^|\\b)' + className.split(' ').join('|') + '(\\b|$)', 'gi'), ' ');
+    },
+
+    hasClass: function hasClass(el, className) {
+        if (el.classList) return el.classList.contains(className);else return new RegExp('(^| )' + className + '( |$)', 'gi').test(el.className);
+    },
+
+    toggleClass: function toggleClass(el, className) {
+        if (this.hasClass(el, className)) this.removeClass(el, className);else this.addClass(el, className);
+    },
+
+    forceRedraw: function forceRedraw(el) {
+        var originalDisplay = el.style.display;
+
+        el.style.display = 'none';
+        el.offsetHeight;
+        el.style.display = originalDisplay;
+    },
+
+    withoutTransition: function withoutTransition(el, callback) {
+        var originalTransition = el.style.transition;
+
+        //turn off transition
+        el.style.transition = null;
+
+        callback();
+
+        //force a redraw
+        this.forceRedraw(el);
+
+        //put the transition back
+        el.style.transition = originalTransition;
+    },
+
+    nodeById: function nodeById(id) {
+        return document.getElementById(id);
+    },
+
+    nodeBySelector: function nodeBySelector(el, s) {
+        return (el || document).querySelector(s);
+    },
+
+    nodesBySelector: function nodesBySelector(el, s) {
+        return (el || document).querySelectorAll(s);
+    },
+
+    text: function text(el, _text) {
+        if (typeof _text === 'string') {
+            el && (el.innerText = _text);
+            return this;
+        }
+        return el ? el.innerText || el.textContent || '' : '';
+    }
+
+};
+
+exports['default'] = dom;
+module.exports = exports['default'];
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
@@ -89,15 +376,15 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _propTypes = __webpack_require__(9);
+var _propTypes = __webpack_require__(6);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _touchSupport = __webpack_require__(8);
+var _touchSupport = __webpack_require__(7);
 
 var _touchSupport2 = _interopRequireDefault(_touchSupport);
 
-var _touchStyles = __webpack_require__(7);
+var _touchStyles = __webpack_require__(9);
 
 var _touchStyles2 = _interopRequireDefault(_touchStyles);
 
@@ -127,18 +414,23 @@ var Tappable = function (_Component) {
 
         var _this = _possibleConstructorReturn(this, (Tappable.__proto__ || Object.getPrototypeOf(Tappable)).call(this, props, context));
 
-        _this.state = {
-            x: null,
-            y: null,
-            swiping: false,
-            start: 0
-        };
+        _this.state = _this.getInitialState();
 
         _this.touchable = (0, _touchSupport2.default)();
         return _this;
     }
 
     _createClass(Tappable, [{
+        key: 'getInitialState',
+        value: function getInitialState() {
+            return {
+                x: null,
+                y: null,
+                swiping: false,
+                start: 0
+            };
+        }
+    }, {
         key: 'render',
         value: function render() {
             var props = this.props,
@@ -338,17 +630,21 @@ Tappable.propTypes = {
     flickThreshold: _propTypes2.default.number,
     delta: _propTypes2.default.number
 };
-
 Tappable.defaultProps = {
     component: 'div',
     flickThreshold: 0.6,
     delta: 10
 };
-
 exports.default = Tappable;
 
 /***/ }),
-/* 2 */
+/* 6 */
+/***/ (function(module, exports) {
+
+module.exports = PropTypes;
+
+/***/ }),
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -357,288 +653,25 @@ exports.default = Tappable;
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports["default"] = docReady;
 
-function docReady(callback) {
+var _eventSupport = __webpack_require__(8);
 
-    function completed() {
-        document.removeEventListener("DOMContentLoaded", completed, false);
-        window.removeEventListener("load", completed, false);
-        callback();
-    }
-
-    //Events.on(document, 'DOMContentLoaded', completed)
-
-    if (document.readyState === "complete") {
-        // Handle it asynchronously to allow scripts the opportunity to delay ready
-        setTimeout(callback);
-    } else {
-
-        // Use the handy event callback
-        document.addEventListener("DOMContentLoaded", completed, false);
-
-        // A fallback to window.onload, that will always work
-        window.addEventListener("load", completed, false);
-    }
-}
-
-module.exports = exports["default"];
-
-/***/ }),
-/* 3 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, '__esModule', {
-    value: true
-});
-
-var dom = {
-
-    isDescendant: function isDescendant(parent, child) {
-        var node = child.parentNode;
-
-        while (node !== null) {
-            if (node === parent) return true;
-            node = node.parentNode;
-        }
-
-        return false;
-    },
-
-    offset: function offset(el) {
-        var rect = el.getBoundingClientRect();
-        return {
-            top: rect.top + document.body.scrollTop,
-            left: rect.left + document.body.scrollLeft
-        };
-    },
-
-    getStyleAttributeAsNumber: function getStyleAttributeAsNumber(el, attr) {
-        var attrStyle = el.style[attr];
-        var attrNum = 0;
-        if (attrStyle && attrStyle.length) {
-            attrNum = parseInt(attrStyle);
-        }
-
-        return attrNum;
-    },
-
-    addClass: function addClass(el, className) {
-        if (el.classList) el.classList.add(className);else el.className += ' ' + className;
-    },
-
-    removeClass: function removeClass(el, className) {
-        if (el.classList) el.classList.remove(className);else el.className = el.className.replace(new RegExp('(^|\\b)' + className.split(' ').join('|') + '(\\b|$)', 'gi'), ' ');
-    },
-
-    hasClass: function hasClass(el, className) {
-        if (el.classList) return el.classList.contains(className);else return new RegExp('(^| )' + className + '( |$)', 'gi').test(el.className);
-    },
-
-    toggleClass: function toggleClass(el, className) {
-        if (this.hasClass(el, className)) this.removeClass(el, className);else this.addClass(el, className);
-    },
-
-    forceRedraw: function forceRedraw(el) {
-        var originalDisplay = el.style.display;
-
-        el.style.display = 'none';
-        el.offsetHeight;
-        el.style.display = originalDisplay;
-    },
-
-    withoutTransition: function withoutTransition(el, callback) {
-        var originalTransition = el.style.transition;
-
-        //turn off transition
-        el.style.transition = null;
-
-        callback();
-
-        //force a redraw
-        this.forceRedraw(el);
-
-        //put the transition back
-        el.style.transition = originalTransition;
-    },
-
-    nodeById: function nodeById(id) {
-        return document.getElementById(id);
-    },
-
-    nodeBySelector: function nodeBySelector(el, s) {
-        return (el || document).querySelector(s);
-    },
-
-    nodesBySelector: function nodesBySelector(el, s) {
-        return (el || document).querySelectorAll(s);
-    },
-
-    text: function text(el, _text) {
-        if (typeof _text === 'string') {
-            el && (el.innerText = _text);
-            return this;
-        }
-        return el ? el.innerText || el.textContent || '' : '';
-    }
-
-};
-
-exports['default'] = dom;
-module.exports = exports['default'];
-
-/***/ }),
-/* 4 */
-/***/ (function(module, exports) {
-
-module.exports = ReactDOM;
-
-/***/ }),
-/* 5 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactDom = __webpack_require__(4);
-
-var _reactDom2 = _interopRequireDefault(_reactDom);
-
-var _es6Docready = __webpack_require__(2);
-
-var _es6Docready2 = _interopRequireDefault(_es6Docready);
-
-var _es6Dom = __webpack_require__(3);
-
-var _es6Dom2 = _interopRequireDefault(_es6Dom);
-
-var _tappable = __webpack_require__(1);
-
-var _tappable2 = _interopRequireDefault(_tappable);
+var _eventSupport2 = _interopRequireDefault(_eventSupport);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+var __TouchSupported = void 0;
+var touchSupport = function touchSupport() {
+    if (typeof __TouchSupported === 'boolean') return __TouchSupported;
 
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+    __TouchSupported = (0, _eventSupport2.default)("touchstart");
+    return __TouchSupported;
+};
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-(0, _es6Docready2.default)(function () {
-    var Main = function (_Component) {
-        _inherits(Main, _Component);
-
-        function Main(props, context) {
-            _classCallCheck(this, Main);
-
-            var _this = _possibleConstructorReturn(this, (Main.__proto__ || Object.getPrototypeOf(Main)).call(this, props, context));
-
-            _this.state = {
-                showed: false,
-                closeable: false
-            };
-
-            _this._handleOverlayTouchTap = _this._handleOverlayTouchTap.bind(_this);
-            _this._onShow = _this._onShow.bind(_this);
-            _this._onDismiss = _this._onDismiss.bind(_this);
-            return _this;
-        }
-
-        _createClass(Main, [{
-            key: 'render',
-            value: function render() {
-                return _react2.default.createElement(
-                    'div',
-                    { className: 'main' },
-                    _react2.default.createElement(
-                        'a',
-                        { className: 'hitbtn', onClick: this._onShow },
-                        'Click to show'
-                    ),
-                    _react2.default.createElement(
-                        'div',
-                        { className: ["container", "table", this.state.showed ? "show" : ''].join(' ') },
-                        _react2.default.createElement(_tappable2.default, { className: 'overlay', onTap: this._handleOverlayTouchTap }),
-                        _react2.default.createElement(
-                            'div',
-                            { className: 'cell' },
-                            _react2.default.createElement(
-                                'div',
-                                { className: 'popup' },
-                                _react2.default.createElement(
-                                    'p',
-                                    null,
-                                    'Hello, it\'s me'
-                                ),
-                                _react2.default.createElement(
-                                    'p',
-                                    null,
-                                    'I was wondering if after all these years you\'d like to meet'
-                                ),
-                                _react2.default.createElement(
-                                    'p',
-                                    null,
-                                    'To go over everything'
-                                ),
-                                _react2.default.createElement(
-                                    'p',
-                                    null,
-                                    'They say that time\'s supposed to heal ya'
-                                ),
-                                _react2.default.createElement(
-                                    'p',
-                                    null,
-                                    'But I ain\'t done much healing'
-                                ),
-                                _react2.default.createElement(
-                                    'span',
-                                    null,
-                                    '< click gray area to dismiss >'
-                                )
-                            )
-                        )
-                    )
-                );
-            }
-        }, {
-            key: '_handleOverlayTouchTap',
-            value: function _handleOverlayTouchTap(e) {
-                if (this.state.closeable) {
-                    this._onDismiss();
-                }
-            }
-        }, {
-            key: '_onShow',
-            value: function _onShow() {
-                setTimeout(function () {
-                    this.state.closeable = true;
-                }.bind(this), 250);
-                this.setState({ showed: true });
-            }
-        }, {
-            key: '_onDismiss',
-            value: function _onDismiss() {
-                this.setState({ showed: false, closeable: false });
-            }
-        }]);
-
-        return Main;
-    }(_react.Component);
-
-    _reactDom2.default.render(_react2.default.createElement(Main, null), _es6Dom2.default.nodeById("page-container"));
-});
+exports.default = touchSupport;
 
 /***/ }),
-/* 6 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -673,7 +706,7 @@ var eventSupport = function eventSupport(eventName) {
 exports.default = eventSupport;
 
 /***/ }),
-/* 7 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -693,39 +726,6 @@ var touchStyles = {
 };
 
 exports.default = touchStyles;
-
-/***/ }),
-/* 8 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _eventSupport = __webpack_require__(6);
-
-var _eventSupport2 = _interopRequireDefault(_eventSupport);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var __TouchSupported = void 0;
-var touchSupport = function touchSupport() {
-    if (typeof __TouchSupported === 'boolean') return __TouchSupported;
-
-    __TouchSupported = (0, _eventSupport2.default)("touchstart");
-    return __TouchSupported;
-};
-
-exports.default = touchSupport;
-
-/***/ }),
-/* 9 */
-/***/ (function(module, exports) {
-
-module.exports = PropTypes;
 
 /***/ })
 /******/ ]);

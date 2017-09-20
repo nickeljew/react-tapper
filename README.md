@@ -4,6 +4,9 @@ Tappable and Swipeable component for React.
 
 
 ## Changelogs
+#### v0.1.15
+- fixed bug; updated packages
+
 #### v0.1.14
 - added .npmignore
 

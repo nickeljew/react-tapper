@@ -4,21 +4,47 @@ import touchSupported from './touch-support'
 import touchStyles from './touch-styles'
 
 
-let _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }
+const _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }
 
 
-class Tappable extends Component {
+export default class Tappable extends Component {
+    static propTypes = {
+        component: PropTypes.any,
+        onTap: PropTypes.func,
+
+        onSwiped: PropTypes.func,
+        onSwipingUp: PropTypes.func,
+        onSwipingRight: PropTypes.func,
+        onSwipingDown: PropTypes.func,
+        onSwipingLeft: PropTypes.func,
+        onSwipedUp: PropTypes.func,
+        onSwipedRight: PropTypes.func,
+        onSwipedDown: PropTypes.func,
+        onSwipedLeft: PropTypes.func,
+        flickThreshold: PropTypes.number,
+        delta: PropTypes.number
+    }
+    static defaultProps = {
+        component: 'div',
+        flickThreshold: 0.6,
+        delta: 10
+    }
+
     constructor(props, context) {
         super(props, context)
 
-        this.state = {
+        this.state = this.getInitialState()
+
+        this.touchable = touchSupported()
+    }
+
+    getInitialState() {
+        return {
             x: null,
             y: null,
             swiping: false,
             start: 0
         }
-
-        this.touchable = touchSupported()
     }
 
     render () {
@@ -196,29 +222,3 @@ class Tappable extends Component {
         }
     }
 }
-
-
-Tappable.propTypes = {
-    component: PropTypes.any,
-    onTap: PropTypes.func,
-
-    onSwiped: PropTypes.func,
-    onSwipingUp: PropTypes.func,
-    onSwipingRight: PropTypes.func,
-    onSwipingDown: PropTypes.func,
-    onSwipingLeft: PropTypes.func,
-    onSwipedUp: PropTypes.func,
-    onSwipedRight: PropTypes.func,
-    onSwipedDown: PropTypes.func,
-    onSwipedLeft: PropTypes.func,
-    flickThreshold: PropTypes.number,
-    delta: PropTypes.number
-}
-
-Tappable.defaultProps = {
-    component: 'div',
-    flickThreshold: 0.6,
-    delta: 10
-}
-
-export default Tappable
