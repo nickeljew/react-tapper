@@ -4,6 +4,9 @@ Tappable and Swipeable component for React.
 
 
 ## Changelogs
+#### v0.1.17
+- removed webpack-dev-server dependency
+
 #### v0.1.16
 - upgrade for react v16
 
