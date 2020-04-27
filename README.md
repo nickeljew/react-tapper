@@ -4,7 +4,7 @@ Tappable and Swipeable component for React.
 
 
 ## Changelogs
-#### v0.1.19
+#### v0.1.20
 - upgrade for security alert
 
 #### v0.1.17

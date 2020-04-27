@@ -25,16 +25,21 @@ module.exports = {
         , 'prop-types': 'PropTypes'
     }
     , module: {
-        loaders: [{
-            test: [/\.jsx$/, /\.es6$/]
-            , exclude: [path.resolve(__dirname, 'node_modules')]
-            , loader: 'babel-loader'
-            , options: {
-                comments: false
-                , sourceMaps: true
-                //, modules: 'umd'
-            }
-        }]
+        rules: [
+            {
+                test: /\.(jsx|es6)$/,
+                exclude: path.resolve(__dirname, 'node_modules'),
+                use: [
+                    {
+                        loader: 'babel-loader',
+                        options: {
+                            // comments: false,
+                            sourceMaps: true,
+                        },
+                    },
+                ],
+            },
+        ],
     }
     //, watch: true
     , target: 'web'
