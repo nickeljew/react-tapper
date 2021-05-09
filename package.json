@@ -10,27 +10,42 @@
     "react"
   ],
   "author": "Nickel Jianhui Zhu <nickeljew@hotmail.com>",
-  "version": "0.1.20",
+  "version": "0.1.21",
   "license": "MIT",
   "private": false,
   "main": "lib/tappable.js",
   "scripts": {},
   "babel": {
     "plugins": [
-      "transform-react-jsx",
-      "transform-class-properties"
+      "@babel/plugin-transform-react-jsx"
     ],
     "presets": [
-      "env",
-      "react"
+      "@babel/preset-env",
+      "@babel/preset-react"
     ]
   },
+  "dependencies": {},
   "peerDependencies": {
-    "prop-types": "^15.7.2",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "prop-types": "^15.6.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
   },
   "devDependencies": {
+    "@babel/core": "^7.14.0",
+    "@babel/plugin-transform-react-jsx": "^7.13.12",
+    "@babel/preset-env": "^7.14.1",
+    "@babel/preset-react": "^7.13.13",
+    "babel-loader": "^8.2.2",
+    "es6-docready": "^1.0.0",
+    "es6-dom": "^1.1.1",
+    "grunt": "^1.4.0",
+    "grunt-babel": "^8.0.0",
+    "grunt-contrib-concat": "^1.0.1",
+    "grunt-webpack": "^4.0.3",
+    "webpack": "^5.36.2",
+    "webpack-dev-server": "^3.11.2"
+  },
+  "_devDependencies": {
     "babel-core": "^6.26.3",
     "babel-loader": "7.1.5",
     "babel-plugin-transform-class-properties": "^6.24.1",
