@@ -1892,10 +1892,10 @@ es6-docready@^1.0.0:
   resolved "https://registry.yarnpkg.com/es6-docready/-/es6-docready-1.0.1.tgz#fb483a6113ead69e7faba856f0fac391e056dcb6"
   integrity sha512-H+OAQqdtK9EExCh0bb55tEcDbh6biwBqhT6z36bfkuylwnLfyW7LkkZ8/YYrMV6BKjqYlAGhzwD2DyIt5widYA==
 
-es6-dom@^1.1.1:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/es6-dom/-/es6-dom-1.1.1.tgz#0fb2f1a254bec0b95037549459eb93ca0aaf45f5"
-  integrity sha512-R6mNCVkiRlqN+7gwE5ZsJGOwl1baEb3Lnn7PUjGg6H7VeXfCky0JDPjhXsF6SaPbGNrffPwp3vFslJ2SRIMyXw==
+es6-dom@^1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/es6-dom/-/es6-dom-1.1.2.tgz#a576d2ba28aa63aed392e404ccf91d279df0d064"
+  integrity sha512-SYpGFGQkGhZ0je75fcDVcAItlCaT0Z3tsl7lw4I2bhNU1QgE087pkZEbCk+Hv9/A3Ql7YJAk0sva/IN3FZ6fGQ==
 
 escalade@^3.1.1:
   version "3.1.1"

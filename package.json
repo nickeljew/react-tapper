@@ -10,7 +10,7 @@
     "react"
   ],
   "author": "Nickel Jianhui Zhu <nickeljew@hotmail.com>",
-  "version": "0.1.22",
+  "version": "0.1.23",
   "license": "MIT",
   "private": false,
   "main": "lib/tappable.js",
@@ -37,7 +37,7 @@
     "@babel/preset-react": "^7.13.13",
     "babel-loader": "^8.2.2",
     "es6-docready": "^1.0.0",
-    "es6-dom": "^1.1.1",
+    "es6-dom": "^1.1.2",
     "grunt": "^1.4.0",
     "grunt-babel": "^8.0.0",
     "grunt-contrib-concat": "^1.0.1",
